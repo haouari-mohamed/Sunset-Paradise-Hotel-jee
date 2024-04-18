@@ -6,109 +6,64 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import model.Reservation;
 import util.DBUtil;
 
 public class ReservationDAOImpl implements ReservationDAO {
 
     @Override
-    public List<Reservation> findAllReservations() {
+    public List<Reservation> getReservationsByUserId(int userId) {
+        // Implementation to retrieve reservations by user ID
+        // This will involve querying the database to fetch reservations for the specified user ID
+        // Return a list of reservations
+        return null; // Placeholder for implementation
+    }
+
+    public boolean createReservation(Reservation reservation) {
+        // Implementation to create a new reservation in the database
+        // This will involve inserting a new record into the reservations table in the database
+        // Return true if the reservation is successfully created, false otherwise
+        return false; // Placeholder for implementation
+    }
+
+    @Override
+    public List<Reservation> getAllReservations() {
+        // Implementation to retrieve all reservations from the database
         List<Reservation> reservations = new ArrayList<>();
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-
-        try {
-            connection = DBUtil.getConnection();
-            String sql = "SELECT * FROM reservations";
-            statement = connection.prepareStatement(sql);
-            resultSet = statement.executeQuery();
-
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM reservations");
+             ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
-                Reservation reservation = new Reservation();
-                reservation.setId(resultSet.getInt("id"));
-                reservation.setCustomerId(resultSet.getInt("customer_id"));
-                reservation.setRoomId(resultSet.getInt("room_id"));
-                reservation.setCheckInDate(resultSet.getDate("check_in_date"));
-                reservation.setCheckOutDate(resultSet.getDate("check_out_date"));
-                // Add reservation to the list
+                // Retrieve reservation details from the result set and create Reservation objects
+                int id = resultSet.getInt("id");
+                int roomId = resultSet.getInt("room_id");
+                String checkInDate = resultSet.getString("check_in_date");
+                String checkOutDate = resultSet.getString("check_out_date");
+                // Create Reservation object and add it to the list
+                Reservation reservation = new Reservation(id, roomId, checkInDate, checkOutDate);
                 reservations.add(reservation);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            DBUtil.close(resultSet, statement, connection);
         }
-
         return reservations;
     }
 
-    @Override
-    public Reservation findReservationById(int id) {
-        Reservation reservation = null;
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
+	@Override
+	public boolean addReservation(Reservation reservation) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-        try {
-            connection = DBUtil.getConnection();
-            String sql = "SELECT * FROM reservations WHERE id = ?";
-            statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
-            resultSet = statement.executeQuery();
+	@Override
+	public boolean updateReservation(Reservation reservation) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-            if (resultSet.next()) {
-                reservation = new Reservation();
-                reservation.setId(resultSet.getInt("id"));
-                reservation.setCustomerId(resultSet.getInt("customer_id"));
-                reservation.setRoomId(resultSet.getInt("room_id"));
-                reservation.setCheckInDate(resultSet.getDate("check_in_date"));
-                reservation.setCheckOutDate(resultSet.getDate("check_out_date"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            DBUtil.close(resultSet, statement, connection);
-        }
-
-        return reservation;
-    }
-
-    @Override
-    public List<Reservation> findReservationsByCustomer() {
-        // Implementation to find reservations by customer
-        return null;
-    }
-
-    @Override
-    public void saveReservation(Reservation reservation) {
-        Connection connection = null;
-        PreparedStatement statement = null;
-
-        try {
-            connection = DBUtil.getConnection();
-            String sql = "INSERT INTO reservations (customer_id, room_id, check_in_date, check_out_date) VALUES (?, ?, ?, ?)";
-            statement = connection.prepareStatement(sql);
-            statement.setInt(1, reservation.getCustomerId());
-            statement.setInt(2, reservation.getRoomId());
-            statement.setDate(3, new java.sql.Date(reservation.getCheckInDate().getTime()));
-            statement.setDate(4, new java.sql.Date(reservation.getCheckOutDate().getTime()));
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            DBUtil.close(statement, connection);
-        }
-    }
-
-    @Override
-    public void updateReservation(Reservation reservation) {
-        // Implementation to update a reservation
-    }
-
-    @Override
-    public void cancelReservation(int id) {
-        // Implementation to cancel a reservation
-    }
+	@Override
+	public boolean deleteReservation(int reservationId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

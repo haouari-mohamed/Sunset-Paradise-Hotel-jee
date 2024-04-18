@@ -1,43 +1,63 @@
 package model;
 
-import java.util.List;
-
 public class Room {
-    private int roomId;
-    private String roomType;
+    private int id;
+    private String type;
     private double price;
-    private List<String> amenities;
+    private String amenities;
     private boolean available;
-    
-	public int getRoomId() {
-		return roomId;
-	}
-	public void setRoomId(int roomId) {
-		this.roomId = roomId;
-	}
-	public String getRoomType() {
-		return roomType;
-	}
-	public void setRoomType(String roomType) {
-		this.roomType = roomType;
-	}
-	public double getPrice() {
-		return price;
-	}
-	public void setPrice(double price) {
-		this.price = price;
-	}
-	public List<String> getAmenities() {
-		return amenities;
-	}
-	public void setAmenities(List<String> amenities) {
-		this.amenities = amenities;
-	}
-	public boolean isAvailable() {
-		return available;
-	}
-	public void setAvailable(boolean available) {
-		this.available = available;
-	}
-    
+
+    // Constructors, getters, and setters
+    // Constructor(s)
+    public Room() {
+    }
+
+    public Room(int id, String type, double price, String amenities, boolean available) {
+        this.id = id;
+        this.type = type;
+        this.price = price;
+        this.amenities = amenities;
+        this.available = available;
+    }
+
+    // Getters and setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getAmenities() {
+        return amenities;
+    }
+
+    public void setAmenities(String amenities) {
+        this.amenities = amenities;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 }

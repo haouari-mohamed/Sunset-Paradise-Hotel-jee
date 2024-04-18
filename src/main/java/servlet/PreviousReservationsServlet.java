@@ -1,65 +1,61 @@
 package servlet;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-import dao.ReservationDAO;
-import dao.RoomDAO;
-import jakarta.servlet.ServletConfig;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import model.Reservation;
+import util.DBUtil;
 
+@WebServlet("/PreviousReservationsServlet")
 public class PreviousReservationsServlet extends HttpServlet {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
-	public RoomDAO roomDAO;
-	
-	
-    
-    @Override
-	public void init() {
-		// TODO Auto-generated method stub
-    	roomDAO = new Roo
-	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Récupérer l'identifiant de l'utilisateur à partir de la session ou des paramètres de requête
-        int userId = getUserIdFromSessionOrRequest(request);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Retrieve user ID from session or request parameters
+        int userId = Integer.parseInt(request.getParameter("userId")); // Example: Assuming user ID is passed as a parameter
         
-        // Appeler la méthode du DAO pour obtenir les réservations précédentes de l'utilisateur
-        ReservationDAO reservationDAO = new;
-        List<Reservation> previousReservations = reservationDAO.getPreviousReservations(userId);
-        
-        // Générer la réponse HTML pour afficher les réservations précédentes
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>Vos Réservations Précédentes</h1>");
-        if(previousReservations.isEmpty()) {
-            out.println("<p>Aucune réservation précédente trouvée.</p>");
-        } else {
-            out.println("<ul>");
-            for(Reservation reservation : previousReservations) {
-                out.println("<li>" + reservation.toString() + "</li>");
+        // Retrieve previous reservations from database
+        List<Reservation> reservations = new ArrayList<>();
+        try (Connection connection = DBUtil.getConnection()) {
+            String sql = "SELECT * FROM reservations WHERE user_id = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, userId);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        // Example: Retrieve reservation details
+                        int reservationId = resultSet.getInt("id");
+                        int roomId = resultSet.getInt("room_id");
+                        String checkInDate = resultSet.getString("check_in_date");
+                        String checkOutDate = resultSet.getString("check_out_date");
+                        
+                        // Create Reservation object
+                        Reservation reservation = new Reservation(reservationId, roomId, checkInDate, checkOutDate);
+                        // Add reservation to the list
+                        reservations.add(reservation);
+                    }
+                }
             }
-            out.println("</ul>");
+        } catch (SQLException e) {
+            // Handle database errors
+            e.printStackTrace();
+            response.getWriter().println("An error occurred while processing your request.");
+            return;
         }
-        out.println("</body></html>");
-    }
-    
-    private int getUserIdFromSessionOrRequest(HttpServletRequest request) {
-        // Implémentez la logique pour récupérer l'identifiant de l'utilisateur à partir de la session ou des paramètres de requête
-        // Par exemple :
-        // return (int) request.getSession().getAttribute("userId");
-        // OU
-        // return Integer.parseInt(request.getParameter("userId"));
-        return 123; // 
+        
+        // Set reservations attribute and forward to JSP
+        request.setAttribute("reservations", reservations);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("previousReservations.jsp");
+        dispatcher.forward(request, response);
     }
 }
