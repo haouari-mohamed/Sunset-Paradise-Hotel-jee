@@ -1,24 +1,9 @@
-package dao;
-
-import java.util.List;
+package DAO;
 import model.Reservation;
+import java.util.List;
 
 public interface ReservationDAO {
-    // Method to retrieve reservations by user ID
-    List<Reservation> getReservationsByUserId(int userId);
-    
-    // Method to add a new reservation to the database
-    boolean addReservation(Reservation reservation);
-    
-    // Method to update an existing reservation in the database
-    boolean updateReservation(Reservation reservation);
-    
-    // Method to delete a reservation from the database
-    boolean deleteReservation(int reservationId);
-    
-    // Method to retrieve all reservations from the database
-    List<Reservation> getAllReservations();
-    
-    // Method to create a reservation
-    boolean createReservation(Reservation reservation);
+    List<Reservation> getReservations();
+    void createReservation(Reservation reservation);
+    void cancelReservation(int reservationId);
 }

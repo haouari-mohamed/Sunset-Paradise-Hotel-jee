@@ -1,13 +1,13 @@
-package dao;
+package DAO;
 
+import java.sql.Date;
 import java.util.List;
+
 import model.Room;
 
 public interface RoomDAO {
-    List<Room> findAvailableRooms(String checkInDate, String checkOutDate, int numGuests);
-    Room getRoomById(int roomId);
-    boolean addRoom(Room room);
-    boolean updateRoom(Room room);
-    boolean deleteRoom(int roomId);
-    List<Room> getAllRooms(); // Method to get all rooms from the database
+	
+	 List<Room> showRoom();
+	List<Room> searchRoom(String searchTerm);
+	List<Room> searchRooms(Date startDate, Date endDate);
 }

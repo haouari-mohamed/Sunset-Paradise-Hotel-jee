@@ -1,54 +1,68 @@
 package model;
 
+import java.util.Date;
+
 public class Reservation {
-    private int id;
-    private int roomId;
-    private String checkInDate;
-    private String checkOutDate;
-    // Other reservation details like guest information can be added here
+    private int reservation_id;
+    private int room_id;
+    private Date start_date;
+    private Date end_date;
+    private String user_id;
 
-    // Constructors, getters, and setters
-    // Constructor(s)
-    public Reservation() {
+    // Constructor, getters, and setters
+    public Reservation(int reservation_id, int room_id, Date start_date, Date end_date, String user_id) {
+        this.reservation_id = reservation_id;
+        this.room_id = room_id;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.user_id = user_id;
     }
 
-    public Reservation(int id, int room_id, String check_in_date, String check_out_oate) {
-        this.id = id;
-        this.roomId = room_id;
-        this.checkInDate = check_in_date;
-        this.checkOutDate = check_out_oate;
-    }
+    public Reservation( int room_id, Date start_date, Date end_date, String user_id) {
+    	this.room_id = room_id;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.user_id = user_id;
+	}
 
-    // Getters and setters
+	// Getters and setters
     public int getId() {
-        return id;
+        return reservation_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int reservation_id) {
+        this.reservation_id = reservation_id;
+    }
+
+    public String getUserId() {
+        return user_id;
+    }
+
+    public void setUserId(String user_id) {
+        this.user_id = user_id;
     }
 
     public int getRoomId() {
-        return roomId;
+        return room_id;
     }
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
+    public void setRoomId(int room_id) {
+        this.room_id = room_id;
     }
 
-    public String getCheckInDate() {
-        return checkInDate;
+    public Date getStartDate() {
+        return start_date;
     }
 
-    public void setCheckInDate(String checkInDate) {
-        this.checkInDate = checkInDate;
+    public void setStartDate(Date start_date) {
+        this.start_date = start_date;
     }
 
-    public String getCheckOutDate() {
-        return checkOutDate;
+    public Date getEndDate() {
+        return end_date;
     }
 
-    public void setCheckOutDate(String checkOutDate) {
-        this.checkOutDate = checkOutDate;
+    public void setEndDate(Date end_date) {
+        this.end_date = end_date;
     }
 }
