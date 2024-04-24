@@ -8,6 +8,7 @@
     <style>
     @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&subset=cyrillic,cyrillic-ext,devanagari,greek,greek-ext,latin-ext,vietnamese');
 
+<<<<<<< HEAD
 body {
 	background: #696969 ; /* dark gray */
 	font-family: 'Poppins', sans-serif;
@@ -61,6 +62,51 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
+=======
+body{
+	background: #1f2029;
+	font-family: 'Poppins', sans-serif;
+}
+label{
+color: white;
+}
+h1{
+color:white;
+  display: flex;
+    align-items: center;
+        justify-content: center;
+}
+      .footer{
+   
+    width: 100%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgb(238, 234, 234);
+    height: 200px;
+}  
+.reservation-card {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: #f8f9fa;
+        }
+        .card-body {
+            padding: 20px;
+        }
+
+   .border-yellow {
+    border: 5px solid gold;
+    border-radius: 5px;
+}
+.buttoncolor{
+ background-color: gold;
+ border: 5px solid gold;
+}
+>>>>>>> 748678eca42ed443f2131ee71a8039b641e2baa6
     </style>
     <title>Your Reservations</title>
 </head>

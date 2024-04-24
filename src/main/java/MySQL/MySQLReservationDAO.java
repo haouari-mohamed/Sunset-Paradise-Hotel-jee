@@ -35,11 +35,19 @@ public  class MySQLReservationDAO implements ReservationDAO {
      }
 
     public void createReservation(Reservation reservation) {
+<<<<<<< HEAD
         String sql = "INSERT INTO reservations ( room_id, start_date, end_date,user_id) VALUES (?, ?, ?, ?)";
         try (Connection connection = MySQLConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             
             statement.setInt(1,reservation.getRoomId());
+=======
+        String sql = "INSERT INTO Reservations ( room_id, start_date, end_date,user_id) VALUES (?, ?, ?, ?)";
+        try (Connection connection = MySQLConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            
+            statement.setInt(1, reservation.getRoomId());
+>>>>>>> 748678eca42ed443f2131ee71a8039b641e2baa6
             statement.setDate(2, new java.sql.Date(reservation.getStartDate().getTime()));
             statement.setDate(3, new java.sql.Date(reservation.getEndDate().getTime()));
             statement.setString(4, reservation.getUserId());

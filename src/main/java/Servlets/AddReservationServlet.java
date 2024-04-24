@@ -35,9 +35,16 @@ public class AddReservationServlet extends HttpServlet {
             Date parsedStartDate = dateFormat.parse(startDateString);
             Date parsedEndDate = dateFormat.parse(endDateString);
 
+<<<<<<< HEAD
            
 
             Reservation reservation = new Reservation(roomId, parsedStartDate, parsedEndDate, userId);
+=======
+            java.sql.Date startDate = new java.sql.Date(parsedStartDate.getTime());
+            java.sql.Date endDate = new java.sql.Date(parsedEndDate.getTime());
+
+            Reservation reservation = new Reservation(roomId, startDate, endDate, userId);
+>>>>>>> 748678eca42ed443f2131ee71a8039b641e2baa6
             reservationDAO.createReservation(reservation);
 
             response.sendRedirect(request.getContextPath() + "/ReservationServlet");

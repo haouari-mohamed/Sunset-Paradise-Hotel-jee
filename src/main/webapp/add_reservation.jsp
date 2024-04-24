@@ -1,4 +1,8 @@
+<<<<<<< HEAD
  <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+=======
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+>>>>>>> 748678eca42ed443f2131ee71a8039b641e2baa6
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +14,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <style> 
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&subset=cyrillic,cyrillic-ext,devanagari,greek,greek-ext,latin-ext,vietnamese');
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900|Roboto:100,300,400,500,700,900&display=swap');
 
 body {
@@ -26,10 +31,25 @@ body {
 
 .footer {
     background-color: #333;
+=======
+
+body{
+	background: #1f2029;
+	font-family: 'Poppins', sans-serif;
+}
+label{
+color: white;
+}
+ .footer{
+   
+    width: 100%;
+    background-color: black;
+>>>>>>> 748678eca42ed443f2131ee71a8039b641e2baa6
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+<<<<<<< HEAD
     color: #ffffff;
     height: 200px;
 }
@@ -53,6 +73,22 @@ h1 {
     background-color: #424242;
 }
 
+=======
+    color: rgb(238, 234, 234);
+    height: 200px;
+}
+h1{
+color:white;
+  display: flex;
+    align-items: center;
+        justify-content: center;
+}
+
+.buttoncolor{
+ background-color: gold;
+ border: 5px solid gold;
+}
+>>>>>>> 748678eca42ed443f2131ee71a8039b641e2baa6
     </style>
 </head>
 <body>
@@ -69,7 +105,11 @@ h1 {
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
+<<<<<<< HEAD
                 <a class="nav-link" href="RoomServlet">Chambres</a>
+=======
+                <a class="nav-link" href="RoomServlet">chambres</a>
+>>>>>>> 748678eca42ed443f2131ee71a8039b641e2baa6
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="ReservationServlet"> Reservations</a>
